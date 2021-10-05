@@ -16,12 +16,19 @@
  12. Отредактировать содержание файла “new2.txt” - написать информацию о себе (ФИО, возраст, количество домашних животных, будущая желаемая зарплата). - vim new2.txt
  13. Отредактировать содержание файла “new2.json” - написать информацию о себе (ФИО, возраст, количество домашних животных, будущая желаемая зарплата). Всё написать в формате JSON. - vim new2.json
  14. Добавить и закоммитить “new2.txt” одной строчкой. - git commit new2.txt -m "new2.txt is updated"
+
+git add new2.txt && git commit -m "new2.txt is updated» 
+
  15. Добавить и закоммитить “new2.json” одной строчкой. -git commit new2.json -m "new2.json is updated"
 
+Or
+git add new2.json && git commit -m "new2.json is updated» 
+
+FYI
 git commit FileName -m «comment"
 
-git add название && git commit -m "comment» 
 
+FYI
 git commit -a
 
  16. Отправить изменения на внешний репозиторий. git push
@@ -32,6 +39,7 @@ git commit -a
 In folder group_23
 git status
 git add .
+git status
 git commit -m "homework_terminal folder is added"
 git push
  21. В веб интерфейсе GitHub создать файл new3.txt. Done - Add file -> Create new file
@@ -55,3 +63,6 @@ git pull
 
 git commit task_git.txt -m "task_git.txt is updated"
 git push
+
+FYI
+git add 1.txt && git commit -m "comment"
