@@ -29,6 +29,7 @@ git commit -a
  18. Добавить и закоммитить “new2.xml” одной строчкой. - git commit -a
  19. Отправить изменения на внешний репозиторий. - git push
  20. Отправить предыдущее домашнее задание по GitBush Terminal на внешний репозиторий.
+In folder group_23
 git status
 git add .
 git commit -m "homework_terminal folder is added"
