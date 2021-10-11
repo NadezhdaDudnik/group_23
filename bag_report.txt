@@ -1,0 +1,29 @@
+"Bug Report
+Defect ID
+Project 
+Issue Type
+Reporter
+Affects version
+Created by
+Assignee
+Fix Version
+Component
+Status
+Severity
+Priority
+Summary
+Description
+Preconditions
+Steps to Reproduce
+Expected Result
+Actual Result
+Issue Links (Link to requirements)
+Link to test-case
+Environment
+Attachment
+Browser
+Operation system
+Device
+Sprint
+Additional Information
+Label
