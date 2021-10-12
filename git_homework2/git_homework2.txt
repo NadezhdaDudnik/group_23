@@ -31,6 +31,7 @@ $ git add bag_report.txt
 $ git status
 $ git commit -m "bag_report.txt is added"
 $ git push --set-upstream origin BagReports
+or git push -u origin BagReports
 
 5. Вмержить ветку Bag Reports в Main
 $ git checkout main
@@ -50,6 +51,7 @@ $ git add checklist.txt
 $ git status
 $ git commit -m "checklist.txt is added"
 $ git push --set-upstream origin CheckLists
+ or git push -u origin CheckLists
 
 9. На внешнем репозитории сделать Pull Request ветки CheckLists в main
 Done
