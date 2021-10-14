@@ -56,7 +56,11 @@
 							"",
 							"// 6 step",
 							"pm.test(\"Response should be valid and have a body as JSON\", function () {",
-							"     pm.response.to.be.ok;",
+							"     if (pm.response.to.be.ok){",
+							"     console.log(true);}",
+							"     else {",
+							"         console.log(false);",
+							"     }",
 							"     pm.response.to.be.withBody;",
 							"     pm.response.to.be.json;",
 							"});",
@@ -274,9 +278,11 @@
 							"// 42 -47 steps - variables are created in environment and have values",
 							"",
 							"// 48 step",
+							"pm.test(\"Check list of elements from 'Salary' property and print to concole\", function() {",
 							"for (i = 0; i < jsonData.salary.length; i++){",
 							"    console.log(parseInt(jsonData.salary[i]))",
-							"}"
+							"}",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -405,7 +411,13 @@
 							"});",
 							"",
 							"// 22 step",
-							"console.log(pm.response.json().person)"
+							"console.log(pm.response.json().person)",
+							"pm.test(\"Check list of elements from 'Person' property and print to concole\", function() {",
+							"    responce_person = jsonData.person.u_name;",
+							"    for (var i=0; i < responce_person.length; i++){",
+							"        console.log(\"Value of u_name \" + String(i), responce_person[i]);",
+							"    }",
+							"});"
 						],
 						"type": "text/javascript"
 					}
