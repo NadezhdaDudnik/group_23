@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "45ff6856-db6f-4ebb-b10f-48027b09e8ce",
+		"name": "Postman_homework2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1_3_task - /first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//3 step",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}first",
+					"host": [
+						"{{url}}first"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4_15_tasks - /user_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"",
+							"// 5 step",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 6 step",
+							"pm.test(\"Response should be valid and have a body as JSON\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"// 7 and 11 steps",
+							"//10 step",
+							"var request_name = request.data.name;",
+							"pm.test(\"Name from response is equal to specified name from POST request\", function(){",
+							"   pm.expect(jsonData.name).to.eql(request_name)",
+							"});",
+							"",
+							"// 8 and 12 steps",
+							"//10 step",
+							"var request_age = request.data.age;",
+							"pm.test(\"Age from response is equal to specified age from POST request\", function(){",
+							"   pm.expect(jsonData.age).to.eql(request_age)",
+							"});",
+							"",
+							"// 9 and 13 steps",
+							"//10 step",
+							"var request_salary = request.data.salary;",
+							"pm.test(\"Salary from response is equal to specified salary from POST request\", function(){",
+							"   pm.expect(jsonData.salary).to.eql(parseInt(request_salary))",
+							"});",
+							"",
+							"// 14 and 15 steps",
+							"pm.test(\"u_salary_1_5_year from response is equal to specified salary*4\", function(){",
+							"console.log(pm.response.json().family)",
+							"pm.expect(jsonData.family.u_salary_1_5_year).to.eql(parseInt(request_salary*4))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}user_info_3",
+					"host": [
+						"{{url}}user_info_3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "16_27_tasks - /object_info_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"// 17 step",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 18-19 and 20 steps",
+							"let request_name = pm.request.url.query.toObject().name;",
+							"pm.test(\"Name from response is equal to name from GET request\", function(){",
+							"   pm.expect(jsonData.name).to.eql(request_name)",
+							"});",
+							"",
+							"// 18-19 and 21 steps",
+							"let request_age = pm.request.url.query.toObject().age; ",
+							"pm.test(\"Age from response is equal to age from GET request\", function(){",
+							"   pm.expect(jsonData.age).to.eql(request_age)",
+							"});",
+							"",
+							"// 18-19 and 22 steps",
+							"let request_salary = pm.request.url.query.toObject().salary; ",
+							"pm.test(\"Salary from response is equal to salary from GET request\", function(){",
+							"   pm.expect(jsonData.salary).to.eql(parseInt(request_salary))",
+							"});",
+							"",
+							"// 23 step",
+							"console.log(pm.response.json().family)",
+							"",
+							"// 24 step",
+							"pm.test(\"family.pets.dog has property 'name'\", function(){",
+							"pm.expect(jsonData).to.have.property('family');",
+							"pm.expect(jsonData.family.pets.dog).to.have.property('name');",
+							"})",
+							"",
+							"// 25 step",
+							"pm.test(\"family.pets.dog has property 'age'\", function(){",
+							"pm.expect(jsonData.family.pets.dog).to.have.property('age');",
+							"})",
+							"",
+							"// 26 step",
+							"pm.test(\"family.pets.dog.name has value = 'Luky'\", function(){",
+							"pm.expect(jsonData.family.pets.dog.name).to.eql(\"Luky\");",
+							"})",
+							"",
+							"// 27 step",
+							"pm.test(\"family.pets.dog.age has value equal 4\", function(){",
+							"pm.expect(jsonData.family.pets.dog.age).to.eql(parseInt(4));",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}object_info_3?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{url}}object_info_3"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "28_48_tasks - /object_info_4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"// 29 step",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 30-31 and 32 steps",
+							"let request_name = pm.request.url.query.toObject().name;",
+							"pm.test(\"Name from response is equal to name from GET request\", function(){",
+							"   pm.expect(jsonData.name).to.eql(request_name)",
+							"});",
+							"",
+							"// 30-31 and 33 steps",
+							"let request_age = pm.request.url.query.toObject().age; ",
+							"pm.test(\"Age from response is equal to age from GET request\", function(){",
+							"   pm.expect(jsonData.age).to.eql(parseInt(request_age))",
+							"});",
+							"",
+							"// 34 step",
+							"console.log(pm.request.url.query.toObject().salary)",
+							"",
+							"// 35 step",
+							"console.log(pm.response.json().salary)",
+							"",
+							"let salary1 = jsonData.salary[0];",
+							"let salary2 = jsonData.salary[1];",
+							"let salary3 = jsonData.salary[2];",
+							"",
+							"// 36 step",
+							"console.log(\"salary1 = \", salary1)",
+							"",
+							"// 37 step",
+							"console.log(\"salary2 = \", parseInt(salary2))",
+							"",
+							"// 38 step",
+							"console.log(\"salary3 = \", parseInt(salary3))",
+							"",
+							"// 39 step",
+							"let request_salary = pm.request.url.query.toObject().salary; ",
+							"pm.test(\"Salary1 from response is equal to salary from GET request\", function(){",
+							"   pm.expect(jsonData.salary[0]).to.eql(parseInt(request_salary));",
+							"});",
+							"",
+							"// 40 step",
+							"pm.test(\"Salary2 from response is equal to salary*2 from GET request\", function(){",
+							"   pm.expect(parseInt(jsonData.salary[1])).to.eql(parseInt(request_salary)*2);",
+							"});",
+							"",
+							"// 41 step",
+							"pm.test(\"Salary3 from response is equal to salary*3 from GET request\", function(){",
+							"   pm.expect(parseInt(jsonData.salary[2])).to.eql(parseInt(request_salary)*3);",
+							"});",
+							"",
+							"// 42 -47 steps - variables are created in environment and have values",
+							"",
+							"// 48 step",
+							"for (i = 0; i < jsonData.salary.length; i++){",
+							"    console.log(parseInt(jsonData.salary[i]))",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}object_info_4?name={{name}}&age={{age}}&salary={{salary}}",
+					"host": [
+						"{{url}}object_info_4"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1_22_tasks - /user_info_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"console.log(pm.response.json());",
+							"// 5 step",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 8 step",
+							"pm.test(\"Check that responce has property 'start_qa_salary'\", function(){",
+							"pm.expect(jsonData).to.have.property('start_qa_salary');",
+							"})",
+							"",
+							"// 9 step",
+							"pm.test(\"Check that responce has property 'qa_salary_after_6_months'\", function(){",
+							"pm.expect(jsonData).to.have.property('qa_salary_after_6_months');",
+							"})",
+							"",
+							"// 10 step",
+							"pm.test(\"Check that responce has property 'qa_salary_after_12_months'\", function(){",
+							"pm.expect(jsonData).to.have.property('qa_salary_after_12_months');",
+							"})",
+							"",
+							"// 11 step",
+							"pm.test(\"Check that responce has property 'qa_salary_after_1.5_year'\", function(){",
+							"pm.expect(jsonData).to.have.property('qa_salary_after_1.5_year');",
+							"})",
+							"",
+							"// 12 step",
+							"pm.test(\"Check that responce has property 'qa_salary_after_3.5_years'\", function(){",
+							"pm.expect(jsonData).to.have.property('qa_salary_after_3.5_years');",
+							"})",
+							"",
+							"// 13 step",
+							"pm.test(\"Check that responce has property 'person'\", function(){",
+							"pm.expect(jsonData).to.have.property('person');",
+							"})",
+							"",
+							"// common check",
+							"pm.test(\"Check that responce should have all properties (keys)\", function(){",
+							"pm.expect(jsonData).to.have.keys('person', 'qa_salary_after_1.5_year', 'qa_salary_after_12_months', 'qa_salary_after_3.5_years', 'qa_salary_after_6_months', 'start_qa_salary');",
+							"})",
+							"",
+							"// 14 step",
+							"let request_salary = request.data.salary;",
+							"pm.test(\"Start_qa_salary from response is equal to salary from POST request\", function(){",
+							"   pm.expect(jsonData.start_qa_salary).to.be.eql(parseInt(request_salary))",
+							"   //common step for console",
+							"    //console.log(parseInt(request_salary))",
+							"    //console.log(jsonData.start_qa_salary)",
+							"});",
+							"",
+							"// 15 step",
+							"pm.test(\"Qa_salary_after_6_months from response is equal to salary*2 from POST request\", function(){",
+							"   pm.expect(jsonData.qa_salary_after_6_months).to.be.eql(parseInt(request_salary)*2)",
+							"});",
+							"",
+							"// 16 step",
+							"pm.test(\"Qa_salary_after_12_months from response is equal to salary*2,7 from POST request\", function(){",
+							"   pm.expect(jsonData.qa_salary_after_12_months).to.be.eql(parseInt(request_salary)*2.7)",
+							"});",
+							"",
+							"// 17 step",
+							"pm.test(\"Qa_salary_after_1.5_year from response is equal to salary*3,3 from POST request\", function(){",
+							"    let salary_1_5_year = jsonData[\"qa_salary_after_1.5_year\"];",
+							"    pm.expect(salary_1_5_year).to.eql(parseInt(request_salary)*3.3);",
+							"});",
+							"",
+							"// 18 step",
+							"pm.test(\"Qa_salary_after_3.5_year from response is equal to salary*3,8 from POST request\", function(){",
+							"    let salary_3_5_years = jsonData[\"qa_salary_after_3.5_years\"];",
+							"    pm.expect(salary_3_5_years).to.eql(parseInt(request_salary)*3.8);",
+							"});",
+							"",
+							"// 19 step",
+							"pm.test(\"U_name's salary of person from response is equal to salary from POST request\", function(){",
+							"   pm.expect(jsonData.person.u_name[1]).to.be.eql(parseInt(request_salary))",
+							"});",
+							"",
+							"// 20 step",
+							"let request_age = JSON.parse(request.data.age);",
+							"pm.test(\"Person's age from response is equal to age from POST request\", function(){",
+							"   pm.expect(jsonData.person.u_age).to.be.eql(parseInt(request_age))",
+							"});",
+							"",
+							"// 21 step",
+							"pm.test(\"Person's u_salary_5_years from response is equal to salary*4.2 from POST request\", function(){",
+							"   pm.expect(jsonData.person.u_salary_5_years).to.eql(parseInt(request_salary)*4.2)",
+							"});",
+							"",
+							"// 22 step",
+							"console.log(pm.response.json().person)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "{{age}}",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "{{salary}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5005/user_info_2",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5005",
+					"path": [
+						"user_info_2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
