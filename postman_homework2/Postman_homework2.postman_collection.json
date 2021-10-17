@@ -474,7 +474,7 @@
 							"});",
 							"",
 							"// 20 step",
-							"let request_age = JSON.parse(request.data.age);",
+							"let request_age = request.data.age;",
 							"pm.test(\"Person's age from response is equal to age from POST request\", function(){",
 							"   pm.expect(jsonData.person.u_age).to.be.eql(parseInt(request_age))",
 							"});",
