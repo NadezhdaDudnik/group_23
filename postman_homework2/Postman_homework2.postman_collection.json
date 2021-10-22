@@ -64,6 +64,14 @@
 							"     pm.response.to.be.json;",
 							"});",
 							"",
+							"pm.environment.set(\"My_name\", jsonData.name);",
+							"pm.environment.set(\"My_age\", jsonData.age);",
+							"pm.environment.set(\"My_salary\", jsonData.salary);",
+							"",
+							"//var Name = pm.environment.get(\"My_name\");",
+							"//var Age = pm.environment.get(\"My_age\");",
+							"//var Salary = pm.environment.get(\"My_salary\");",
+							"",
 							"// 4 and 8 steps",
 							"// 7 step",
 							"var request_name = request.data.name;",
@@ -126,64 +134,7 @@
 					]
 				}
 			},
-			"response": [
-				{
-					"name": "4_15 tasks - /user_info_3",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Nadin",
-									"type": "text"
-								},
-								{
-									"key": "age",
-									"value": "48",
-									"type": "text"
-								},
-								{
-									"key": "salary",
-									"value": "500",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}user_info_3",
-							"host": [
-								"{{url}}user_info_3"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
-						},
-						{
-							"key": "Content-Length",
-							"value": "114"
-						},
-						{
-							"key": "Server",
-							"value": "Werkzeug/2.0.1 Python/3.8.10"
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 13 Oct 2021 14:30:16 GMT"
-						}
-					],
-					"cookie": [],
-					"body": "{\n    \"age\": \"48\",\n    \"family\": {\n        \"children\": [\n            [\n                \"Alex\",\n                24\n            ],\n            [\n                \"Kate\",\n                12\n            ]\n        ],\n        \"u_salary_1_5_year\": 2000\n    },\n    \"name\": \"Nadin\",\n    \"salary\": 500\n}"
-				}
-			]
+			"response": []
 		},
 		{
 			"name": "1_12_tasks - /object_info_3",
@@ -221,6 +172,10 @@
 							"   pm.expect(jsonData.salary).to.eql(parseInt(request_salary))",
 							"});",
 							"",
+							"pm.test(\"My test salary\", function () {",
+							"    pm.expect(+request_salary).to.eql(jsonData.salary);",
+							"});",
+							"",
 							"// 8 step",
 							"console.log(pm.response.json().family)",
 							"",
@@ -228,11 +183,13 @@
 							"pm.test(\"family.pets.dog has property 'name'\", function(){",
 							"pm.expect(jsonData).to.have.property('family');",
 							"pm.expect(jsonData.family.pets.dog).to.have.property('name');",
+							"console.log(\"====\",jsonData.family.pets.dog.name);",
 							"})",
 							"",
 							"// 10 step",
 							"pm.test(\"family.pets.dog has property 'age'\", function(){",
 							"pm.expect(jsonData.family.pets.dog).to.have.property('age');",
+							"console.log(\"====\",jsonData.family.pets.dog.age);",
 							"})",
 							"",
 							"// 11 step",
@@ -243,6 +200,7 @@
 							"// 12 step",
 							"pm.test(\"family.pets.dog.age has value equal 4\", function(){",
 							"pm.expect(jsonData.family.pets.dog.age).to.eql(parseInt(4));",
+							"pm.expect(jsonData.family.pets.dog.age).to.have.property+(4);",
 							"})",
 							"",
 							""
@@ -340,6 +298,7 @@
 							"// 14 step",
 							"pm.test(\"Salary3 from response is equal to salary*3 from GET request\", function(){",
 							"   pm.expect(parseInt(jsonData.salary[2])).to.eql(parseInt(request_salary)*3);",
+							"   pm.expect(+jsonData.salary[2]).to.eql(request_salary*3);",
 							"});",
 							"",
 							"// 15 -17 steps - variables are created in environment and have values",
@@ -482,6 +441,7 @@
 							"// 21 step",
 							"pm.test(\"Person's u_salary_5_years from response is equal to salary*4.2 from POST request\", function(){",
 							"   pm.expect(jsonData.person.u_salary_5_years).to.eql(parseInt(request_salary)*4.2)",
+							"   pm.expect(jsonData.person.u_salary_5_years).to.eql(+request_salary*4.2);",
 							"});",
 							"",
 							"// 22 step",
