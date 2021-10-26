@@ -3,6 +3,7 @@ select * from students
 
 -- 2. Вывести всех студентов в таблице
 select name from students;
+select id, name from students;
 
 --3. Вывести только Id пользователей
 select id from students;
@@ -87,6 +88,7 @@ select max(id) as max_id from students
 
 -- 30. Вывести количество пользователей
 select count(name) as min_id from students
+select count(id) as min_id from students
 
 -- 31. Вывести id пользователя, имя, дату создания пользователя. Отсортировать по порядку возрастания даты добавления пользоватлеля.
 select id, name, created_on from students order by created_on 
