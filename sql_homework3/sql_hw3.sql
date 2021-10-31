@@ -224,6 +224,14 @@
  group by r.role_name
  order by count(e.id) asc
  
+  select count(e.id) as count_of_developers, r.role_name from roles r
+ inner join (roles_employee re inner join employees e 
+ on re.employee_id = e.id)
+ on r.id = re.role_id 
+ where r.role_name like '%developer%'
+ group by r.role_name
+ order by count(e.id) asc
+
  --28. Вывести фонд (сумму) зарплаты разработчиков
  select sum(s.monthly_salary) as sum_of_salary_developers, r.role_name from salary s
  inner join (employee_salary es inner join (employees e 
