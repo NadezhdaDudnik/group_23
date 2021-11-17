@@ -1,0 +1,95 @@
+brew install android-platform-tools
+adb devices
+Cd путь к apk
+ls -la
+adb install app-debug.apk
+adb shell 'pm list packages -f'
+adb shell 'pm list packages -f'| grep todolist
+package:/data/app/com.android.todolist-sfrEABxj54ehjDdqlkz3Ng==/base.apk=com.android.todolist
+
+Нам нужно
+com.android.todolist
+
+adb uninstall com.android.todolist
+
+adb install app-debug.apk
+
+Логи
+Чтение логов
+
+Чтение логов в Android производится утилитой logcat.
+
+Домашняя страница утилиты logcat: developer.android.com/tools/help/logcat.html
+
+Считать логи с устройства (блокируется до нажатия Ctrl-C):
+
+adb logcat
+
+
+
+Очистить буфер логов на устройстве:
+
+adb logcat -c
+
+
+
+Считать буфер логов на устройстве (выдает текущее содержимое буфера, не блокируется):
+
+adb logcat -d
+
+
+
+Пример:
+
+adb logcat -c # очищаем буфер логов
+
+# выполняем действие
+
+adb logcat -d > file.log # сохраняем текущее содержимое буфера логов в file.log
+
+adb logcat
+control c
+adb logcat -c
+adb logcat | grep -rnw "todolist"
+
+control c
+
+adb logcat | grep -rnw "todolist" > log_todolist.log - запись логов
+control c
+
+adb shell screencap /storage/emulated/0/DCIM/123.png 
+
+Pwd
+
+Перенос файла из телефона в комп
+adb pull /storage/emulated/0/DCIM/123.png /Users/a17787194/Pictures/001_ToDoList-master/app/build/outputs/apk/debug/123.png
+
+Делаем скриншот и переносим на комп
+adb shell screencap /storage/emulated/0/DCIM/124.png && adb pull /storage/emulated/0/DCIM/123.png /Users/a17787194/Pictures/001_ToDoList-master/app/build/outputs/apk/debug/124.png
+
+Для копирования файлов с устройства на компьютер и обратно используются команды pull и push.
+
+adb push <local source file path> <device destination file path>
+adb pull <device source file path> <local destination file path>
+
+
+
+Откат
+
+adb backup -apk -shared -all -f /Users/a17787194/Pictures/001_ToDoList-master/app/build/outputs/apk/debug/backup.adb
+
+adb restore /Users/a17787194/Pictures/001_ToDoList-master/app/build/outputs/apk/debug/backup.adb
+
+Android studio
+logcat
+
+
+Снятие скриншотов с помощью утилиты screencap
+
+Утилита screencap сохраняет текущее содержимое экрана в графический файл:
+
+adb shell screencap /sdcard/screen.png
+
+adb pull /sdcard/screen.png screen.png
+
+adb shell rm /sdcard/screen.png
